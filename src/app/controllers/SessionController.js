@@ -7,7 +7,6 @@ import User from '../models/User';
 class SessionController {
   async store(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
       email: Yup.string()
         .email()
         .required(),
@@ -23,7 +22,7 @@ class SessionController {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(401).json({ error: 'User not found' });
+      return res.status(400).json({ error: 'User not found' });
     }
 
     if (!(await user.checkPassword(password))) {
