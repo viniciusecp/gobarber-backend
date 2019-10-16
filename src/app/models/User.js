@@ -25,6 +25,13 @@ class User extends Model {
     return this;
   }
 
+  static associate(models) {
+    // belongsTo -> de dentro apontando para outra tabela
+    // hasOne -> de fora apontando pra dentro dessa tabela
+    // hasMany -> de dentro apontando para várias outras tabelas
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
+
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }
