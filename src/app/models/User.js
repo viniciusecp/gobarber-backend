@@ -26,9 +26,8 @@ class User extends Model {
   }
 
   static associate(models) {
-    // belongsTo -> de dentro apontando para outra tabela
-    // hasOne -> de fora apontando pra dentro dessa tabela
-    // hasMany -> de dentro apontando para várias outras tabelas
+    // belongsTo -> Endereço pertence a um usuário. FK fica na tablea que estamos adicionando o relacionamento.
+    // hasOne -> Usuário possui um endereço. FK fica na tabela relacionada, ou seja, na tabela de endereço.
     this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 
